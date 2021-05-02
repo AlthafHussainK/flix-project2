@@ -1,9 +1,9 @@
 import React from 'react'
 import { Feature, OptForm } from '../components'
-import { FaqsContainer } from '../containers/faqs';
-import { FooterContainer } from '../containers/footer'
 import { HeaderContainer } from '../containers/header';
 import { JumbotronContainer } from '../containers/jumbotron'
+import { FaqsContainer } from '../containers/faqs';
+import { FooterContainer } from '../containers/footer'
 
 export default function Home() {
   return (
@@ -24,9 +24,9 @@ export default function Home() {
             Ready to watch? Enter your email to create or restart your membership
           </OptForm.Text>
         </OptForm>
-        </Feature>
-    
+        </Feature> 
       </HeaderContainer>
+      
       <JumbotronContainer />
       <FaqsContainer />
       <FooterContainer />

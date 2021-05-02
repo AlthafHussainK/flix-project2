@@ -6,7 +6,7 @@ import { FooterContainer } from '../containers/footer'
 import { Form } from '../components'
 import * as ROUTES from '../constants/routes'
 
-export default function Signup() {
+export default function SignUp() {
   const history = useHistory()
   const { firebase } = useContext(FirebaseContext)
 
@@ -17,7 +17,7 @@ export default function Signup() {
 
   const isInvalid = firstName === '' || password === '' || emailAddress === '';
 
-  const handleSignup = (event) => {
+  const handleSignUp = (event) => {
     event.preventDefault()
 
     firebase  
@@ -49,7 +49,7 @@ export default function Signup() {
           <Form.Title>Sign Up</Form.Title>
           {error && <Form.Error>{error}</Form.Error>}
 
-          <Form.Base onSubmit={handleSignup} method="POST">
+          <Form.Base onSubmit={handleSignUp} method="POST">
             <Form.Input
               placeholder="First name"
               value={firstName}

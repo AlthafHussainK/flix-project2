@@ -6,30 +6,31 @@ import { FooterContainer } from '../containers/footer'
 import { Form } from '../components'
 import * as ROUTES from '../constants/routes'
 
-export default function Signin() {
+export default function SignIn() {
   const history = useHistory()
   const { firebase } = useContext(FirebaseContext)
+  
   const [emailAddress, setEmailAddress] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
 
   const isInvalid = password === '' || emailAddress === '';
-  const handleSignin = (event) => {
-    event.preventDefault()
 
-    firebase
+  const handleSignIn = (event) => {
+    event.preventDefault();
+
+    return firebase
       .auth()
-      .signInWithEmailAndPassword(emailAddress, password)
+      .signInWithEmailAndPassword(emailAddress, password).then(() => {console.log("SIGNED IN")})
       .then(() => {
-        history.push(ROUTES.BROWSE)
+        history.push(ROUTES.BROWSE);
       })
       .catch((error) => {
         setEmailAddress('');
         setPassword('');
-        setError(error.message)
-      })
-
-  }
+        setError(error.message);
+      });
+  };
 
   return (
     <>
@@ -38,7 +39,7 @@ export default function Signin() {
           <Form.Title>Sign In</Form.Title>
           {error && <Form.Error>{error}</Form.Error>}
 
-          <Form.Base onSubmit={handleSignin} method="POST">
+          <Form.Base onSubmit={handleSignIn} method="POST">
             <Form.Input
               placeholder="Email address"
               value={emailAddress}
@@ -51,9 +52,9 @@ export default function Signin() {
               value={password}
               onChange={({ target }) => setPassword(target.value)}
             />
-            <Form.Submit disabled={isInvalid} type="submit">
+            <Form.Submit disabled={isInvalid} type="submit" data-testid="sign-in">
               Sign In
-            </Form.Submit> 
+            </Form.Submit>
           </Form.Base>
 
           <Form.Text>
